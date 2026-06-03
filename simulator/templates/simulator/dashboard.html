@@ -905,6 +905,54 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Fault Injection Card -->
+            <div class="glass-card">
+                <div class="card-title" id="lbl-faults-title">🔧 Inject Faults</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;" id="lbl-faults-desc">Manually trigger system faults and operational scenarios to test Digital Twin monitoring and detection systems.</p>
+                <div class="controls-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
+                    <div>
+                        <button class="btn btn-fault" id="fault-RESERVOIR_OVERFLOW" data-scenario="RESERVOIR_OVERFLOW" style="width:100%; justify-content: flex-start;">
+                            💧 <span id="lbl-scen-overflow">Reservoir Overflow</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-HOSTEL_DRY" data-scenario="HOSTEL_DRY" style="width:100%; justify-content: flex-start;">
+                            🪫 <span id="lbl-scen-hosteldry">Hostel Tank Dry-out</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-P1_FAIL" data-scenario="P1_FAIL" style="width:100%; justify-content: flex-start;">
+                            ⚠️ <span id="lbl-scen-p1fail">Borehole 1 Pump Fail</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-P3_FAIL" data-scenario="P3_FAIL" style="width:100%; justify-content: flex-start;">
+                            ⚠️ <span id="lbl-scen-p3fail">Transfer Pump Fail</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-CHLORINE_FAIL" data-scenario="CHLORINE_FAIL" style="width:100%; justify-content: flex-start;">
+                            🧪 <span id="lbl-scen-clfail">Chlorine Dosing Fail</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-PIPE_SCALING" data-scenario="PIPE_SCALING" style="width:100%; justify-content: flex-start;">
+                            🧱 <span id="lbl-scen-scaling">Pipe Friction Scaling</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-fault" id="fault-SENSOR_FAIL" data-scenario="SENSOR_FAIL" style="width:100%; justify-content: flex-start;">
+                            📡 <span id="lbl-scen-sensorfail">Hostel A Sensor Fail</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" id="fault-RESET" style="width:100%; justify-content: flex-start;">
+                            🔄 <span id="lbl-scen-reset">Reset All Faults</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <!-- Interactively Flow Network Map -->
             <div class="glass-card">
@@ -1158,71 +1206,17 @@
         <!-- Right Side Alerts Feed and ChE Details -->
         <div class="right-column">
             
-            <!-- Fault Injection Card (Tabbed) -->
+            <!-- Repair Solutions Card -->
             <div class="glass-card">
-                <div class="card-tabs">
-                    <button class="card-tab active" id="tab-btn-injector" onclick="switchFaultTab('injector')">🔧 Inject Faults</button>
-                    <button class="card-tab" id="tab-btn-solutions" onclick="switchFaultTab('solutions')">
-                        🛠️ Repair Solutions
-                        <span id="fault-badge-count" style="display: none; background: var(--accent-red); color: white; border-radius: 50%; padding: 1px 6px; font-size: 0.65rem; margin-left: 4px; font-weight: 700;">0</span>
-                    </button>
+                <div class="card-title">
+                    <span>🛠️ Repair Solutions</span>
+                    <span id="fault-badge-count" style="display: none; background: var(--accent-red); color: white; border-radius: 50%; padding: 1px 6px; font-size: 0.65rem; margin-left: 4px; font-weight: 700;">0</span>
                 </div>
-                
-                <!-- Tab 1: Injector Controls -->
-                <div id="tab-injector" class="tab-content active">
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;" id="lbl-faults-desc">Manually trigger system faults and operational scenarios to test Digital Twin monitoring and detection systems.</p>
-                    <div class="controls-grid" style="grid-template-columns: 1fr; gap: 0.75rem;">
-                        <div>
-                            <button class="btn btn-fault" id="fault-RESERVOIR_OVERFLOW" data-scenario="RESERVOIR_OVERFLOW" style="width:100%; justify-content: flex-start;">
-                                💧 <span id="lbl-scen-overflow">Reservoir Overflow</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-HOSTEL_DRY" data-scenario="HOSTEL_DRY" style="width:100%; justify-content: flex-start;">
-                                🪫 <span id="lbl-scen-hosteldry">Hostel Tank Dry-out</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-P1_FAIL" data-scenario="P1_FAIL" style="width:100%; justify-content: flex-start;">
-                                ⚠️ <span id="lbl-scen-p1fail">Borehole 1 Pump Fail</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-P3_FAIL" data-scenario="P3_FAIL" style="width:100%; justify-content: flex-start;">
-                                ⚠️ <span id="lbl-scen-p3fail">Transfer Pump Fail</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-CHLORINE_FAIL" data-scenario="CHLORINE_FAIL" style="width:100%; justify-content: flex-start;">
-                                🧪 <span id="lbl-scen-clfail">Chlorine Dosing Fail</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-PIPE_SCALING" data-scenario="PIPE_SCALING" style="width:100%; justify-content: flex-start;">
-                                🧱 <span id="lbl-scen-scaling">Pipe Friction Scaling</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-fault" id="fault-SENSOR_FAIL" data-scenario="SENSOR_FAIL" style="width:100%; justify-content: flex-start;">
-                                📡 <span id="lbl-scen-sensorfail">Hostel A Sensor Fail</span>
-                            </button>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" id="fault-RESET" style="width:100%; justify-content: flex-start;">
-                                🔄 <span id="lbl-scen-reset">Reset All Faults</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab 2: Solutions & Repair Actions -->
-                <div id="tab-solutions" class="tab-content">
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">View active fault diagnostics, step-by-step resolution plans, and dispatch repair operators in real-time.</p>
-                    <div id="solutions-container">
-                        <!-- Populated dynamically via Javascript based on activeScenarios -->
-                        <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.8rem;">
-                            🟢 System healthy. No active faults detected.
-                        </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">View active fault diagnostics, step-by-step resolution plans, and dispatch repair operators in real-time.</p>
+                <div id="solutions-container">
+                    <!-- Populated dynamically via Javascript based on activeScenarios -->
+                    <div style="text-align: center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.8rem;">
+                        🟢 System healthy. No active faults detected.
                     </div>
                 </div>
             </div>
@@ -2108,20 +2102,7 @@
 
         const dispatchedScenarios = new Set();
 
-        function switchFaultTab(tabName) {
-            document.getElementById('tab-btn-injector').classList.remove('active');
-            document.getElementById('tab-btn-solutions').classList.remove('active');
-            document.getElementById('tab-injector').classList.remove('active');
-            document.getElementById('tab-solutions').classList.remove('active');
-            
-            if (tabName === 'injector') {
-                document.getElementById('tab-btn-injector').classList.add('active');
-                document.getElementById('tab-injector').classList.add('active');
-            } else {
-                document.getElementById('tab-btn-solutions').classList.add('active');
-                document.getElementById('tab-solutions').classList.add('active');
-            }
-        }
+
 
         function dispatchRepairer(scen) {
             if (dispatchedScenarios.has(scen)) return;
